@@ -1,28 +1,107 @@
 == Glossary of Gradle terms
 
-Build script.
+[[build-script]]
+=== Build script
+A `build.gradle` script. The existence of a build script, along with an entry in the
+<<settings-script,settings script>> (other than for the root build script, which requires no entry), 
+is what defines a Gradle <<module,module>>.
 
-Configuration.
+[[configuration]]
+=== Configuration
+A https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.Configuration.html[Configuration], at
+the most basic level, is a bucket of dependencies. The most common configurations, which most people
+would have seen, are `api` and `implementation`. A great place to learn more about configurations
+is the documentation for the https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library]
+plugin.
 
-Configuration phase.
+The word "configuration" is one of the most overloaded in the Gradle world.
+See also <<configuration-phase,configuration phase>>.
 
-Convention plugin.
+[[configuration-phase]]
+=== Configuration phase
+A Gradle build is composed of two primary phases, the configuration phase (not to be confused with 
+<<configuration>> instances) and the <<execution-phase,execution phase>>. The configuration phase 
+happens first and is single-threaded.
 
-Execution phase.
+[[convention-plugin]]
+=== Convention plugin
+A <<plugin>> built on top of an <<ecosystem-plugin,ecosystem plugin>>, and which applies common
+_conventions_ to the build script that uses the plugin.
 
-Ecosystem plugin.
+See also https://developer.squareup.com/blog/herding-elephants/[Herding elephants: Wrangling a 3,500-module Gradle project].
 
-Init script.
+[[execution-phase]]
+=== Execution phase
+The second primary phase of a Gradle build, the execution phase happens after the
+<<configuration-phase,configuration phase>> is complete. This is where all task actions are
+executed. This phase has multiple levels of parallelism.
 
-Module.
+[[ecosystem-plugin]]
+=== Ecosystem plugin
+A <<plugin>> responsible for building a language, such as Java (`java` and `java-library`), Groovy,
+Scala, Android, Kotlin, etc. Many plugins are maintained by <<gradle,Gradle>> itself, and are 
+part of the Gradle distribution.
 
-Plugin.
+[[gradle]]
+=== Gradle
+https://gradle.org/[Gradle] is the build system developed and maintained by https://gradle.com/[Gradle, Inc.],
+a for-profit company.
 
-Precompiled script plugin.
+[[init-script]]
+=== Init script
+An init, or https://docs.gradle.org/current/userguide/init_scripts.html[initialization script], is
+backed by an instance of the https://docs.gradle.org/current/javadoc/org/gradle/api/invocation/Gradle.html[`Gradle` type].
 
-Project.
+See also <<plugin,Plugin>>.
 
-Script plugin.
+[[module]]
+=== Module
+An informal term for a <<project>>, but more common than the formal term. A module is a 
+source code-containing directory, more or less independent of other modules in the same multi-module
+(or multi-project) project.
 
-Settings script.
+This is one of the other very heavily overloaded terms in the Gradle world. See also <<project,Project>>.
 
+[[plugin]]
+=== Plugin
+Gradle is built on a plugin system. Gradle itself is primarily composed of infrastructure, such as
+a sophisticated dependency resolution engine, common to all project types. The rest of its
+functionality comes from plugins, including "core" plugins distributed with <<gradle,Gradle>> itself,
+third-party plugins, and <<script-plugin,script plugins>> in a given build.
+
+There are three kinds of plugin:
+. Project plugins that implement `Plugin<Project>`.
+. Settings plugins that implement `Plugin<Settings>`.
+. Init (Gradle) plugins that implement `Plugin<Gradle>`.
+
+See also <<script-plugin,script plugin>> and <<precompiled-script-plugin,precompiled script plugin>>.
+
+[[precompiled-script-plugin]]
+=== Precompiled script plugin
+Equivalent to a <<plugin>>, but written such that it looks like a build script, 
+https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins[precompiled script plugins]
+can be written in Groovy or Kotlin by applying the `'groovy-gradle-plugin'` or `kotlin-dsl` plugin,
+respectively. 
+
+[[project]]
+=== Project
+Often referred to as a "module", every Gradle project is backed by a 
+https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html[Project] instance, hence the name.
+The most common type of <<plugin>> is a project plugin. Most Gradle projects are composed of many
+projects (sometimes called "subprojects").
+
+[[script-plugin]]
+=== Script plugin
+A gradle script that can be applied to other gradle scripts, including <<build-script,build scripts>>,
+<<settings-script,settings scripts>>, and <<init-script,init scripts>>. Can be written in Groovy or
+Kotlin, and are applied to other scripts via 
+https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/PluginAware.html#apply-java.util.Map-[PluginAware.apply]. 
+For example, `apply from: 'complicated_thing.gradle'`. Depending on the type of script they are 
+applied to, they're backed by either a <<project,Project>> instance, a <<settings-script,Settings>> instance,
+or a <<init-script,Gradle>> instance.
+
+[[settings-script]]
+=== Settings script
+A `settings.gradle` script. A https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/Settings.html[settings script]
+has a large number of responsibilities, but one of the most important is declaring the set of <<project,projects>>
+that are part of the build, via `include ':project1'` and so on.
