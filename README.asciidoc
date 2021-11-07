@@ -1,0 +1,28 @@
+== Glossary of Gradle terms
+
+Build script.
+
+Configuration.
+
+Configuration phase.
+
+Convention plugin.
+
+Execution phase.
+
+Ecosystem plugin.
+
+Init script.
+
+Module.
+
+Plugin.
+
+Precompiled script plugin.
+
+Project.
+
+Script plugin.
+
+Settings script.
+
