@@ -70,6 +70,7 @@ functionality comes from plugins, including "core" plugins distributed with <<gr
 third-party plugins, and <<script-plugin,script plugins>> in a given build.
 
 There are three kinds of plugin:
+
 . Project plugins that implement `Plugin<Project>`.
 . Settings plugins that implement `Plugin<Settings>`.
 . Init (Gradle) plugins that implement `Plugin<Gradle>`.
