@@ -44,7 +44,7 @@ part of the Gradle distribution.
 
 [[gradle]]
 === Gradle
-https://gradle.org/[Gradle] is the build system developed and maintained by https://gradle.com/[Gradle, Inc.],
+https://gradle.org/[Gradle] is the open-source build system developed and maintained by https://gradle.com/[Gradle, Inc.],
 a for-profit company.
 
 [[init-script]]
