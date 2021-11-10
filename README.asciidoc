@@ -30,17 +30,17 @@ _conventions_ to the build script that uses the plugin.
 
 See also https://developer.squareup.com/blog/herding-elephants/[Herding elephants: Wrangling a 3,500-module Gradle project].
 
-[[execution-phase]]
-=== Execution phase
-The second primary phase of a Gradle build, the execution phase happens after the
-<<configuration-phase,configuration phase>> is complete. This is where all task actions are
-executed. This phase has multiple levels of parallelism.
-
 [[ecosystem-plugin]]
 === Ecosystem plugin
 A <<plugin>> responsible for building a language, such as Java (`java` and `java-library`), Groovy,
 Scala, Android, Kotlin, etc. Many plugins are maintained by <<gradle,Gradle>> itself, and are 
 part of the Gradle distribution.
+
+[[execution-phase]]
+=== Execution phase
+The second primary phase of a Gradle build, the execution phase happens after the
+<<configuration-phase,configuration phase>> is complete. This is where all task actions are
+executed. This phase has multiple levels of parallelism.
 
 [[gradle]]
 === Gradle
