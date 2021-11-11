@@ -1,5 +1,9 @@
 == Glossary of Gradle terms
 
+[[a-build]]
+=== A build
+A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of tasks. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
+
 [[build-script]]
 === Build script
 A `build.gradle` script. The existence of a build script, along with an entry in the
