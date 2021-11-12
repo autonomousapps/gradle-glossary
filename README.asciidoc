@@ -2,7 +2,7 @@
 
 [[a-build]]
 === A build
-A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of tasks. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
+A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of <<task, tasks>>. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
 
 [[build-script]]
 === Build script
@@ -43,7 +43,7 @@ part of the Gradle distribution.
 [[execution-phase]]
 === Execution phase
 The second primary phase of a Gradle build, the execution phase happens after the
-<<configuration-phase,configuration phase>> is complete. This is where all task actions are
+<<configuration-phase,configuration phase>> is complete. This is where all <<task, tasks>> actions are
 executed. This phase has multiple levels of parallelism.
 
 [[gradle]]
@@ -110,3 +110,7 @@ or a <<init-script,Gradle>> instance.
 A `settings.gradle` script. A https://docs.gradle.org/current/javadoc/org/gradle/api/initialization/Settings.html[settings script]
 has a large number of responsibilities, but one of the most important is declaring the set of <<project,projects>>
 that are part of the build, via `include ':project1'` and so on.
+
+[[tasks]]
+=== Tasks (a task)
+Each <<project,projects>> is made up of one or more tasks. Each task is atomic, with inputs and outputs. Gradle executes tasks to perform its work. Task examples include; compiling classes, creating a JAR/APK, generating Javadoc, running static analysis (lint), deleting temporary files, or publishing to a repository, etc. When a task is asked to run we can see the outcome of the task. This will be one of EXECUTED, SKIPPED, FAILED, FROM-CACHE, UP-TO-DATE, NO-SOURCE or _blank_ (meaning executed). 
