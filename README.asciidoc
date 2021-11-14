@@ -1,7 +1,7 @@
 == Glossary of Gradle terms
 
-[[a-build]]
-=== A build
+[[build]]
+=== Build
 A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of <<task, tasks>>. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
 
 [[build-script]]
@@ -43,7 +43,7 @@ part of the Gradle distribution.
 [[execution-phase]]
 === Execution phase
 The second primary phase of a Gradle build, the execution phase happens after the
-<<configuration-phase,configuration phase>> is complete. This is where all <<task, tasks>> actions are
+<<configuration-phase,configuration phase>> is complete. This is where all <<task,tasks>> actions are
 executed. This phase has multiple levels of parallelism.
 
 [[gradle]]
@@ -73,17 +73,21 @@ a sophisticated dependency resolution engine, common to all project types. The r
 functionality comes from plugins, including "core" plugins distributed with <<gradle,Gradle>> itself,
 third-party plugins, and <<script-plugin,script plugins>> in a given build.
 
-There are three kinds of plugin:
+There are three _kinds_ of plugin, based on the context in which they are applied:
 
-. Project plugins that implement `Plugin<Project>`.
-. Settings plugins that implement `Plugin<Settings>`.
-. Init (Gradle) plugins that implement `Plugin<Gradle>`.
+. Project plugins that implement `Plugin<Project>`, applied in <<build-script,build scripts>>.
+. Settings plugins that implement `Plugin<Settings>`, applied in <<settings-script,settings scripts>>.
+. Init (Gradle) plugins that implement `Plugin<Gradle>`, applied in <<init-script,init scripts>>.
 
-See also <<script-plugin,script plugin>> and <<precompiled-script-plugin,precompiled script plugin>>.
+Plugins may be _implemented_ as so-called binary plugins (that is, by explicitly implementing one of the
+specific generic interfaces described above), or as <<precompiled-script-plugin,precompiled script plugins>>.
+This distinction is merely an implementation detail.
+
+cf. <<script-plugin,script plugins>>.
 
 [[precompiled-script-plugin]]
 === Precompiled script plugin
-Equivalent to a <<plugin>>, but written such that it looks like a build script, 
+Equivalent to a <<plugin,plugin>>, but written such that it looks like a build script, 
 https://docs.gradle.org/current/userguide/custom_plugins.html#sec:precompiled_plugins[precompiled script plugins]
 can be written in Groovy or Kotlin by applying the `'groovy-gradle-plugin'` or `kotlin-dsl` plugin,
 respectively. 
@@ -111,6 +115,6 @@ A `settings.gradle` script. A https://docs.gradle.org/current/javadoc/org/gradle
 has a large number of responsibilities, but one of the most important is declaring the set of <<project,projects>>
 that are part of the build, via `include ':project1'` and so on.
 
-[[tasks]]
-=== Tasks (a task)
+[[task]]
+=== Task
 Each <<project,projects>> is made up of one or more tasks. Each task ought to be atomic (but often isn't), with inputs and outputs. Gradle executes tasks to perform its work. Task examples include: compiling source code, creating artifacts (such as jars or apks), generating Javadoc, running static analysis (e.g. lint), deleting temporary files, or publishing to a repository, etc. When a https://docs.gradle.org/current/userguide/more_about_tasks.html[Gradle task] is asked to run we can see the outcome of the task. This will be one of EXECUTED, SKIPPED, FAILED, FROM-CACHE, UP-TO-DATE, NO-SOURCE or _blank_ (meaning executed). 
