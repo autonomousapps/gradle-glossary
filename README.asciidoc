@@ -125,6 +125,13 @@ A `settings.gradle` script. A https://docs.gradle.org/current/javadoc/org/gradle
 has a large number of responsibilities, but one of the most important is declaring the set of <<project,projects>>
 that are part of the build, via `include ':project1'` and so on.
 
+[[software-component]]
+=== SoftwareComponent
+A https://docs.gradle.org/current/javadoc/org/gradle/api/component/SoftwareComponent.html[SoftwareComponent] is a list of artifacts
+built by Gradle. It's a relatively recent API used to connect outgoing configurations and publications. Most of the times, you will
+use already existing components such as `java` or the https://proandroiddev.com/android-library-distribution-with-maven-publish-28ac59b8ecb8[android ones]
+to configure your maven publications. If you're a plugin author, you will most likely deal with https://docs.gradle.org/current/javadoc/org/gradle/api/component/AdhocComponentWithVariants.html[AdhowComponentWithVariants]
+
 [[task]]
 === Task
 Each <<project,projects>> is made up of one or more tasks. Each task ought to be atomic (but often isn't), with inputs and outputs. Gradle executes tasks to perform its work. Task examples include: compiling source code, creating artifacts (such as jars or apks), generating Javadoc, running static analysis (e.g. lint), deleting temporary files, or publishing to a repository, etc. When a https://docs.gradle.org/current/userguide/more_about_tasks.html[Gradle task] is asked to run we can see the outcome of the task. This will be one of EXECUTED, SKIPPED, FAILED, FROM-CACHE, UP-TO-DATE, NO-SOURCE or _blank_ (meaning executed). 
