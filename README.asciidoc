@@ -18,6 +18,16 @@ would have seen, are `api` and `implementation`. A great place to learn more abo
 is the documentation for the https://docs.gradle.org/current/userguide/java_library_plugin.html[java-library]
 plugin.
 
+While the usage as a bucket of dependencies is the most common for Gradle users, configurations can
+also https://docs.gradle.org/current/userguide/declaring_dependencies.html#sec:resolvable-consumable-configs[be used in other ways]
+by plugin authors:
+
+- as a https://docs.gradle.org/current/javadoc/org/gradle/api/file/FileCollection.html[FileCollection]
+as an input to tasks (e.g. `runtimeClasspath`).
+- as an outgoing https://docs.gradle.org/current/userguide/variant_model.html#understanding-variant-selection[variant]
+to be later https://docs.gradle.org/current/userguide/publishing_customization.html#sec:publishing-custom-components[published]
+(e.g. `apiElements`)
+
 The word "configuration" is one of the most overloaded in the Gradle world.
 See also <<configuration-phase,configuration phase>>.
 
