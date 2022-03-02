@@ -1,5 +1,9 @@
 == Glossary of Gradle terms
 
+[[artifact]]
+=== Artifact
+'Artifact' is usually used in the context of publishing to designate a file whose name has a 'classifier' and 'extension'. Two artifacts in a publication cannot have the same classifier and extension.
+
 [[build]]
 === Build
 A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of <<task, tasks>>. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
