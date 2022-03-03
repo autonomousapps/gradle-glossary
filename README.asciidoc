@@ -1,5 +1,11 @@
 == Glossary of Gradle terms
 
+[[artifact]]
+=== Artifact
+'Artifact' is usually used in the context of publishing to designate a file whose name has a 'classifier' and 'extension'. Two artifacts in a <<publication>> cannot have the same classifier and extension. 
+
+Confusingly, when used in the context of <<maven-publication-format, Maven coordinates>>, an artifactId refers to a list of the above artifacts. For an example, the `okhttp` artifactId contains jar, sources and javadocs artifacts.
+
 [[build]]
 === Build
 A 'build' is the aggregate of the atomic pieces of work performed by Gradle. A build is made up of <<project,projects>> and those projects have a collection of <<task, tasks>>. A build usually has an outcome of SUCCESS or FAILURE. You can run a build using the `gradle` or `gradlew` commands. 
@@ -68,6 +74,27 @@ backed by an instance of the https://docs.gradle.org/current/javadoc/org/gradle/
 
 See also <<plugin,Plugin>>.
 
+[[maven-build-tool]]
+=== Maven (build tool)
+https://maven.apache.org/[Maven] is a build tool like Gradle but using a more declarative syntax based on XML. 
+For publishing dependencies, Maven uses the <<maven-publication-format, Maven publication format>>.
+
+[[maven-publication-format]]
+=== Maven (publication format)
+The Maven publication format is the format used by most of the JVM ecosystem to publish and consume binary dependencies.
+Each dependency is identified by a `"$group:$artifact:$version` string called "Maven coordinates". These dependencies
+can then be consumed by accessing files (by HTTP or on the local filesystem) at `$root/$group/$version/`. For an example, the files for `com.squareup.okhttp3:okhttp:4.9.3` are available at https://repo.maven.apache.org/maven2/com/squareup/okhttp3/okhttp/4.9.3/
+
+While originally made for the <<maven-build-tool, Maven build tool>>, Gradle also supports the Maven publication format. In order to provide 
+more flexibility, Gradle also introduced https://docs.gradle.org/current/userguide/publishing_gradle_module_metadata.html[Gradle module metadata]
+to provide more information about the dependencies than a regular https://maven.apache.org/guides/introduction/introduction-to-the-pom.html[pom file]
+
+[[maven-central]]
+=== MavenCentral
+https://search.maven.org/[MavenCentral] is the main repository that hosts <<maven-publication-format, Maven publications>>. It is operated by a 
+company named https://www.sonatype.com/[Sonatype] and is the default repository for a lot of the ecosystem.
+Other repositories exists like (now defunct) https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/[jcenter] or the https://maven.google.com/web/index.html[Google Maven repository].
+
 [[module]]
 === Module
 An informal term for a <<project>>, but more common than the formal term. A module is a 
@@ -108,6 +135,12 @@ Often referred to as a "module", every Gradle project is backed by a
 https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html[Project] instance, hence the name.
 The most common type of <<plugin>> is a project plugin. Most Gradle projects are composed of many
 projects (sometimes called "subprojects").
+
+[[publication]]
+=== Publication
+A Gradle https://docs.gradle.org/current/javadoc/org/gradle/api/publish/Publication.html[Publication] is a list of
+<<artifact, artifacts>>, and possibly associated metadata. Most of the times, you will deal with https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPublication.html[MavenPublications] to publish in the 
+<<maven-publication-format, Maven publication format>> with the https://docs.gradle.org/current/userguide/publishing_maven.html[`maven-publish`] plugin
 
 [[script-plugin]]
 === Script plugin
