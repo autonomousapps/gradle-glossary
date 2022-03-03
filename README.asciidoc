@@ -161,7 +161,7 @@ that are part of the build, via `include ':project1'` and so on.
 [[software-component]]
 === SoftwareComponent
 A https://docs.gradle.org/current/javadoc/org/gradle/api/component/SoftwareComponent.html[SoftwareComponent] is a list of artifacts
-built by Gradle. It's a relatively recent API used to connect outgoing configurations and publications. Most of the times, you will
+built by Gradle. It's a relatively recent API used to connect <<configuration, outgoing configurations>> and <<publication, publications>>. Most of the times, you will
 use already existing components such as `java` or the https://proandroiddev.com/android-library-distribution-with-maven-publish-28ac59b8ecb8[android ones]
 to configure your maven publications. If you're a plugin author, you will most likely deal with https://docs.gradle.org/current/javadoc/org/gradle/api/component/AdhocComponentWithVariants.html[AdhowComponentWithVariants]
 
