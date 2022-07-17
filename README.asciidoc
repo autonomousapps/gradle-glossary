@@ -62,6 +62,20 @@ The second primary phase of a Gradle build, the execution phase happens after th
 <<configuration-phase,configuration phase>> is complete. This is where all <<task,tasks>> actions are
 executed. This phase has multiple levels of parallelism.
 
+[[gradle-local-build-cache]]
+=== Gradle Local build cache
+
+Gradle Local build cache is one of the core features of gradle that reduces subsequent gradle builds time 
+signficantly by reusing outputs produced by previous builds for tasks that have the same input, 
+it does so by calculating a hash key for each cacheable task's input, and this key is used to store
+task's outputs under `~/.gradle` folder on your local machine.
+
+[[gradle-remote-build-cache]]
+=== Gradle Remote build cache
+
+This is the same as Gradle Local build cache, but it is stored on CI server to reuse outputs produced
+by a build on CI or by one developer's machine across other developers local machines.
+
 [[gradle]]
 === Gradle
 https://gradle.org/[Gradle] is the open-source build system developed and maintained by https://gradle.com/[Gradle, Inc.],
