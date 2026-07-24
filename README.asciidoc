@@ -64,8 +64,8 @@ executed. This phase has multiple levels of parallelism.
 
 [[gradle]]
 === Gradle
-https://gradle.org/[Gradle] is the open-source build system developed and maintained by https://gradle.com/[Gradle, Inc.],
-a for-profit company.
+https://gradle.org/[Gradle] is the free and open-source build tool developed and maintained by https://develocity.ai/[Develocity],
+a for-profit company. (Formerly known as Gradle, Inc.)
 
 [[init-script]]
 === Init script
